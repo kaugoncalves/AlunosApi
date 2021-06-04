@@ -1,19 +1,6 @@
-const mysql = require('mysql');
+const knex = require('knex');
+const config = require('./config')
 
-const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'bdvesp',
-  port: '3307'
-});
+const connection  = knex(config);
 
-connection.connect(function(err) {
-    if (err) 
-      console.log('Erro na CONEXÃO com o BD BDMAT')
-    else
-      console.log('CONEXÃO com BD BDMAT realizada com SUCESSO!');
-});
-
-module.exports = connection;
-
+module.exports = connection; 
