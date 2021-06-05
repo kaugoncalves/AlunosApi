@@ -7,6 +7,7 @@ module.exports = {
 
       return response.json(ret);
     } catch (erro) {
+      
       return response.status(500).json(erro);
     }
   },
@@ -29,6 +30,7 @@ module.exports = {
       const aluno = await transaction("alunos").where({ ra }).first();
 
       if (!aluno) {
+        
         return response
           .status(404)
           .json({ message: `Aluno do código ${ra} não encontrado` });
@@ -39,6 +41,7 @@ module.exports = {
         .first();
 
       if (!disciplina) {
+
         return response
           .status(404)
           .json({ message: `Disciplina do código ${cod} não encontrada` });
@@ -49,6 +52,7 @@ module.exports = {
         .first();
 
       if (!matricula) {
+
         return response.status(404).json({
           message: "O aluno do ra informado não está matriculado nessa matéria",
         });
@@ -59,6 +63,7 @@ module.exports = {
         .first();
 
       if (resultado) {
+
         return response.status(500).json({
           message: "Um resultado com esses parametros já existe",
           resultado,
@@ -74,6 +79,7 @@ module.exports = {
       transaction.commit();
       return response.status(200).json(resultado_inserido[0]);
     } catch (erro) {
+
       console.log(erro);
       transaction.rollback();
       return response
